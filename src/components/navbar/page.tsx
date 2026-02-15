@@ -131,8 +131,8 @@ export default function Navbar() {
               {session.status == "authenticated" && (
                 <div className="relative">
                   <Link href={"/cart"}>
-                    <ShoppingCartIcon className="text-blue-700" />
-                    <Badge className="h-5 min-w-5 rounded-full px-1 text-white font-mono tabular-nums absolute -top-4 -end-3">
+                    <ShoppingCartIcon className="text-blue-700 fill-blue-700" />
+                    <Badge className="h-5 min-w-5 rounded-full px-1 text-white font-mono bg-blue-700 tabular-nums absolute -top-4 -end-3">
                       {isLoading ? (
                         <Loader className="animate-spin" />
                       ) : (
@@ -145,8 +145,8 @@ export default function Navbar() {
               {session.status == "authenticated" && (
                 <div className="relative ">
                   <Link href={"/wishlist"}>
-                    <HeartIcon className="text-red-500" />
-                    <Badge className="  h-5 min-w-5 rounded-full px-1 text-red-500 font-mono tabular-nums absolute -top-4 -end-3 bg-white shadow-amber-900">
+                    <HeartIcon className="text-red-600 fill-red-600" />
+                    <Badge className="  h-5 min-w-5 rounded-full px-1 text-white bg-red-600 font-mono tabular-nums absolute -top-4 -end-3 ">
                       {wishlistLoading ? (
                         <Loader className="animate-spin" size={14} />
                       ) : (
