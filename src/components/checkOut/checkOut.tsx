@@ -35,7 +35,7 @@ export default function CheckOut({ cartId }: { cartId: string }) {
           token,
           "Content-Type": "application/json",
         },
-      },
+      }
     );
     const data = await response.json();
     console.log(data);
@@ -61,7 +61,7 @@ export default function CheckOut({ cartId }: { cartId: string }) {
           token,
           "Content-Type": "application/json",
         },
-      },
+      }
     );
 
     const data = await response.json();
@@ -78,7 +78,7 @@ export default function CheckOut({ cartId }: { cartId: string }) {
       <Dialog>
         <form>
           <DialogTrigger asChild>
-            <Button className="w-full mb-3">Proceed to Checkout</Button>
+            <Button  className="w-full mb-3 bg-blue-700 hover:bg-blue-800">Proceed to Checkout</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-sm">
             <DialogHeader>
@@ -103,11 +103,11 @@ export default function CheckOut({ cartId }: { cartId: string }) {
             </div>
             <DialogFooter>
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button className="bg-red-600 hover:bg-red-700 text-white">Cancel</Button>
               </DialogClose>
               <Button
                 type="button"
-                className="cursor-pointer"
+                className="cursor-pointer bg-blue-600 hover:bg-blue-700"
                 onClick={() => checkOutSession(cartId)}
               >
                 Visa

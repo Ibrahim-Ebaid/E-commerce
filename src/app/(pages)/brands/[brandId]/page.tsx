@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -11,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MyStarIcon from "@/components/myStarIcone/myStarIcon";
 import AddToCart from "@/components/addToCart/AddToCart";
+import AddToWishlist from "@/components/Addtowishlist/AddToWishList";
 
 export default async function BrandDetails({
   params,
@@ -57,32 +59,39 @@ export default async function BrandDetails({
       {/* ========= Products Section ========= */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
         {products.map((product) => (
-          <Card key={product.id}>
-            <Link href={`/products/${product.id}`}>
-              <CardHeader>
-                <Image
-                  src={product.imageCover}
-                  width={300}
-                  height={300}
-                  alt={product.title}
-                  className="w-full"
-                />
-                <CardTitle>{product.title.split(" ", 2).join(" ")}</CardTitle>
-                <CardDescription>{product.category.name}</CardDescription>
-              </CardHeader>
-
-              <CardContent>
-                <div className="flex gap-1 items-center">
-                  <MyStarIcon />
-                  <MyStarIcon />
-                  <MyStarIcon />
-                  <MyStarIcon />({product.ratingsAverage})
-                </div>
-                <p className="mt-1 font-bold">Price : {product.price} EGP</p>
-              </CardContent>
-            </Link>
+          <Card>
+          <Link href={"/products/" + product.id}>
+            <CardHeader>
+              <Image
+                src={product.imageCover}
+                className="w-full"
+                width={300}
+                height={300}
+                alt=""
+              />
+              <CardDescription>{product.brand.name}</CardDescription>
+              <CardTitle>{product.title.split(" ", 2).join(" ")}</CardTitle>
+              <CardDescription>{product.category.name}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex">
+                <MyStarIcon />
+                <MyStarIcon />
+                <MyStarIcon />
+                <MyStarIcon />
+                <p>{product.ratingsAverage}</p>
+              </div>
+              <p className="pt-1">
+                price : <span className="font-bold">{product.price}</span>{" "}
+                EGP
+              </p>
+            </CardContent>
+          </Link>
+          <CardFooter className="gap-2">
             <AddToCart productId={product._id} />
-          </Card>
+            <AddToWishlist productId={product._id} />
+          </CardFooter>
+        </Card>
         ))}
       </div>
     </div>

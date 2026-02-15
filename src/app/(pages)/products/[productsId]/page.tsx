@@ -6,12 +6,14 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import MyStarIcon from "@/components/myStarIcone/myStarIcon";
 import ProductSlider from "@/components/productSlider/productSlider";
 import AddToCart from "@/components/addToCart/AddToCart";
+import AddToWishlist from "@/components/Addtowishlist/AddToWishList";
 
 export default async function ProductDetails({ params }: { params: Params }) {
   let { productsId } = await params;
@@ -49,7 +51,13 @@ export default async function ProductDetails({ params }: { params: Params }) {
               <p className="font-bold">Qantity : {product.quantity}</p>
             </div>
           </CardContent>
-          <AddToCart productId={product._id} />
+          <div>
+            {" "}
+            <CardFooter className="gap-2 pt-2">
+              <AddToCart productId={product._id} />
+              <AddToWishlist productId={product._id} />
+            </CardFooter>
+          </div>
         </div>
       </Card>
     </>

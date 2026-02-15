@@ -234,7 +234,7 @@ export default function Login() {
                 )}
               />
 
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={isLoading}>
+              <Button className="w-full bg-emerald-500 hover:bg-emerald-800" disabled={isLoading}>
                 {isLoading && <Loader className="animate-spin mr-2 h-4 w-4" />}
                 Login
               </Button>

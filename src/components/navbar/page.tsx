@@ -60,7 +60,7 @@ export default function Navbar() {
               </NavigationMenuList>
             </NavigationMenu>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-5">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <UserIcon className="cursor-pointer" />
@@ -131,7 +131,7 @@ export default function Navbar() {
               {session.status == "authenticated" && (
                 <div className="relative">
                   <Link href={"/cart"}>
-                    <ShoppingCartIcon />
+                    <ShoppingCartIcon className="text-blue-700" />
                     <Badge className="h-5 min-w-5 rounded-full px-1 text-white font-mono tabular-nums absolute -top-4 -end-3">
                       {isLoading ? (
                         <Loader className="animate-spin" />
@@ -143,10 +143,10 @@ export default function Navbar() {
                 </div>
               )}
               {session.status == "authenticated" && (
-                <div className="relative">
+                <div className="relative ">
                   <Link href={"/wishlist"}>
-                    <HeartIcon />
-                    <Badge className="h-5 min-w-5 rounded-full px-1 text-white font-mono tabular-nums absolute -top-4 -end-3">
+                    <HeartIcon className="text-red-500" />
+                    <Badge className="  h-5 min-w-5 rounded-full px-1 text-red-500 font-mono tabular-nums absolute -top-4 -end-3 bg-white shadow-amber-900">
                       {wishlistLoading ? (
                         <Loader className="animate-spin" size={14} />
                       ) : (

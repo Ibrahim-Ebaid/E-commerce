@@ -48,12 +48,12 @@ export default function AddToWishlist({ productId }: AddToWishlistProps) {
   };
 
   return (
-    <Button
+    <span
       onClick={handleAddToWishlist}
-      variant="outline"
-      className="w-12 flex justify-center items-center"
+     
+      className="w-12 flex justify-center items-center hover:text-red-500 cursor-pointer "
     >
       {isWishlistLoading ? <Loader className="animate-spin" /> : <HeartIcon />}
-    </Button>
+    </span>
   );
 }

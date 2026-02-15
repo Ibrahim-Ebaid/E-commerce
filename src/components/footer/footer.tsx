@@ -9,12 +9,12 @@ export default function Footer() {
           <div>
             <Link href={"/"}>
               {" "}
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-2 mb-4 hover:text-blue-500">
                 {" "}
-                <div className="w-8 h-8 bg-black text-white flex items-center justify-center rounded font-semibold">
+                <div className="w-8 h-8 bg-black text-white flex items-center justify-center rounded font-semibold ">
                   S
                 </div>
-                <h2 className="text-lg font-semibold">ShopMart</h2>
+                <h2 className="text-lg font-semibold ">ShopMart</h2>
               </div>
             </Link>
 
@@ -27,7 +27,11 @@ export default function Footer() {
 
           {/* Shop */}
           <div>
-            <h3 className="font-semibold mb-4 uppercase text-sm">Shop</h3>
+            <Link href={"/brands"}>
+              <h3 className="font-semibold mb-4 uppercase text-sm hover:text-blue-500">
+                Shop
+              </h3>
+            </Link>
             <ul className="space-y-3 text-sm text-gray-500">
               <li className="hover:text-black cursor-pointer">Electronics</li>
               <li className="hover:text-black cursor-pointer">Fashion</li>

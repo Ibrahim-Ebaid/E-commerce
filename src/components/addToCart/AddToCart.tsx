@@ -31,8 +31,8 @@ export default function AddToCart({ productId }: { productId: string }) {
   }
   return (
     <>
-      <CardFooter className="gap-2">
-        <Button onClick={addProductToCart} className="grow">
+      
+        <Button onClick={addProductToCart} className=" bg-blue-600 hover:bg-blue-900 grow cursor-pointer">
           {isLoading ? (
             <Loader className="animate-spin" />
           ) : (
@@ -43,7 +43,7 @@ export default function AddToCart({ productId }: { productId: string }) {
         
         
 
-      </CardFooter>
+     
     </>
   );
 }

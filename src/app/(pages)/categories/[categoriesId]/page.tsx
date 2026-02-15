@@ -13,6 +13,8 @@ import Link from "next/link";
 import MyStarIcon from "@/components/myStarIcone/myStarIcon";
 import { Button } from "@/components/ui/button";
 import { HeartIcon, ShoppingCartIcon } from "lucide-react";
+import AddToWishlist from "@/components/Addtowishlist/AddToWishList";
+import AddToCart from "@/components/addToCart/AddToCart";
 
 export default async function CategoryDetails({
   params,
@@ -62,19 +64,39 @@ console.log(categoriesId);
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
         {products?.map((product) => (
-          <Card key={product.id}>
-            <Link href={`/products/${product.id}`}>
-              <CardHeader>
-                <Image
-                  src={product.imageCover}
-                  width={260}
-                  height={160}
-                  alt={product.title}
-                />
-                <CardTitle>{product.title}</CardTitle>
-              </CardHeader>
-            </Link>
-          </Card>
+          <Card>
+          <Link href={"/products/" + product.id}>
+            <CardHeader>
+              <Image
+                src={product.imageCover}
+                className="w-full"
+                width={300}
+                height={300}
+                alt=""
+              />
+              <CardDescription>{product.brand.name}</CardDescription>
+              <CardTitle>{product.title.split(" ", 2).join(" ")}</CardTitle>
+              <CardDescription>{product.category.name}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex">
+                <MyStarIcon />
+                <MyStarIcon />
+                <MyStarIcon />
+                <MyStarIcon />
+                <p>{product.ratingsAverage}</p>
+              </div>
+              <p className="pt-1">
+                price : <span className="font-bold">{product.price}</span>{" "}
+                EGP
+              </p>
+            </CardContent>
+          </Link>
+          <CardFooter className="gap-2">
+            <AddToCart productId={product._id} />
+            <AddToWishlist productId={product._id} />
+          </CardFooter>
+        </Card>
         ))}
       </div>
     </div>

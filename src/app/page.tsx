@@ -19,7 +19,7 @@ export default function HomePage() {
 
         <div className="flex justify-center gap-4">
           <Link href={"/products"}>
-            <Button className="px-8 h-11 rounded-md hover:bg-white hover:text-black hover:border-2 hover:border-black">
+            <Button className="px-8 h-11 rounded-md cursor-pointer bg-black hover:bg-blue-700">
               Shop Now
             </Button>
           </Link>

@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -56,9 +57,10 @@ export default async function Products() {
                   </p>
                 </CardContent>
               </Link>
-              <AddToCart productId={product._id} />
-              <AddToWishlist productId={product._id} />
-           
+              <CardFooter className="gap-2">
+                <AddToCart productId={product._id} />
+                <AddToWishlist productId={product._id} />
+              </CardFooter>
             </Card>
           </div>
         ))}
