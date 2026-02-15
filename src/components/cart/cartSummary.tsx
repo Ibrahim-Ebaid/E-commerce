@@ -45,11 +45,11 @@ export default function CartSummary({ clearCart, isClearing }: clearCartProps) {
             </Button>
           </Link>
         </div>
-        <div className="border-2 rounded-xl p-3 w-fit border-red-500 font-semibold ">
+        <div className="border-2 rounded-xl p-3 w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white">
           {" "}
           <button
             onClick={clearCart}
-            className="flex items-center gap-2 text-red-500 text-sm  cursor-pointer"
+            className="flex items-center gap-2  text-sm  cursor-pointer"
           >
             {isClearing ? (
               <Loader className="animate-spin" />

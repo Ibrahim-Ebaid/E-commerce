@@ -29,9 +29,11 @@ export default function WishlistItem({
         <h3 className="font-semibold">{product.title}</h3>
         <p className="text-muted-foreground">{product.price} EGP</p>
       </div>
-
+<div>
+  
+</div>
       <Button
-        variant="destructive"
+      className="border-2 rounded-xl p-3 w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
         onClick={() => removeWishlistItem(product._id)}
         disabled={removingId === product._id}
       >

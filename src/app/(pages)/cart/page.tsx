@@ -124,7 +124,7 @@ export default function Cart() {
         <div className="flex flex-col items-center justify-center min-h-[75vh] gap-2">
           <h2>Your Cart is Empty....😥</h2>
           <Link href={"/products"}>
-            <Button>Add Products to Cart</Button>
+            <Button className="bg-blue-600 hover:bg-blue-700 mt-3 cursor-pointer">Add Products to Cart</Button>
           </Link>
         </div>
       )}

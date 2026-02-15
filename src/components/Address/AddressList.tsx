@@ -63,7 +63,7 @@ export default function AddressList({ token }: { token: string | null }) {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Your Addresses</h1>
 
-        <Button onClick={() => router.push("/profile/Address/add")}>
+        <Button onClick={() => router.push("/profile/Address/add")} className="cursor-pointer bg-blue-800 hover:bg-blue-700 ">
           <Plus className="mr-2 h-4 w-4" />
           Add Address
         </Button>

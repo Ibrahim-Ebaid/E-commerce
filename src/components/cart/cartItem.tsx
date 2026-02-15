@@ -45,7 +45,7 @@ export default function CartItem({
                 <p>{item.product.category.name}</p>
 
                 <div className="flex items-center gap-2 mt-3">
-                  <Button
+                  <Button className="hover:text-white hover:bg-red-500"
                     onClick={() =>
                       updateCartItem(item.product._id, item.count - 1)
                     }
@@ -54,8 +54,9 @@ export default function CartItem({
                   >
                     <Minus size={16} />
                   </Button>
-                  <span className="font-semibold">{updateId==item.product.id?<Loader className="animate-spin" />:item.count}</span>
+                  <span className="font-semibold">{updateId==item.product.id?<Loader className="animate-spin text-yellow-400" />:item.count}</span>
                   <Button
+                   className="hover:text-white hover:bg-blue-600"
                     onClick={() =>
                       updateCartItem(item.product._id, item.count + 1)
                     }
@@ -73,15 +74,15 @@ export default function CartItem({
               <p className="font-bold text-lg">{item.price} EGP</p>
               <div className="flex justify-between items-center gap-2 ">
                 {removingId == item.product._id && (
-                  <Loader className="animate-spin" />
+                  <Loader className="animate-spin text-red-500"/>
                 )}
 
-                <button
+                <Button
                   onClick={() => removeCartItem(item.product._id)}
-                  className="hover:text-red-500 text-sm mt-2 p-2 cursor-pointer border-2 hover:border-2 border-black rounded-2xl hover:border-red-500 hover:rounded-2xl"
+                   className="border-2 mt-2 rounded-xl p-3 w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
                 >
                   Remove
-                </button>
+                </Button>
               </div>
             </div>
           </div>
