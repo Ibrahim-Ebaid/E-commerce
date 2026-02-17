@@ -17,7 +17,7 @@ export async function getUserToken() {
 export async function getUserId() {
   const cookieStore = await cookies();
   const tokenValue =
-    cookieStore.get("next-auth.session-token")?.value ||
+    cookieStore.get("next-auth.session-token")?.value ??
     cookieStore.get("__Secure-next-auth.session-token")?.value;
 
   if (!tokenValue) return null;
