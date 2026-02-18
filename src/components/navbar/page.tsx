@@ -17,7 +17,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { HeartIcon, Loader, ShoppingCartIcon, UserIcon } from "lucide-react";
+import {
+  HeartIcon,
+  Loader,
+  ShoppingCartIcon,
+  UserIcon,
+  MenuIcon,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cartContext } from "../context/cartContext";
 import { signOut, useSession } from "next-auth/react";
@@ -25,25 +31,25 @@ import { wishlistContext } from "../context/wishListContext";
 
 export default function Navbar() {
   const session = useSession();
-  console.log(session);
 
   const { cartData, isLoading } = useContext(cartContext);
   const { wishlistData, isLoading: wishlistLoading } =
     useContext(wishlistContext);
+
   return (
     <>
       <nav className="bg-gray-100 py-3 font-semibold text-2xl p-4">
         <div className="container mx-auto">
           <div className="flex items-center justify-between">
             <Link href={"/"}>
-              <h1 className="flex justify-center items-center gap-2 hover:text-blue-700">
+              <h1 className="flex justify-center items-center gap-2 hover:text-blue-700 p-0 m-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-8"
+                  className="w-8 h-8"
                 >
                   <path
                     strokeLinecap="round"
@@ -54,29 +60,35 @@ export default function Navbar() {
                 <span> ShopMart</span>
               </h1>
             </Link>
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link href="/products">Products</Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link href="/categories">Categories</Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+            {/* Desktop Menu */}
+            <div className="hidden md:block">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                      <Link href="/products">Products</Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link href="/brands">Brands</Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                      <Link href="/categories">Categories</Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
 
-            <div className="flex items-center gap-5">
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                      <Link href="/brands">Brands</Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
+
+            {/* Desktop Icons */}
+            <div className="hidden md:flex items-center gap-5">
+              {/* USER */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <UserIcon className="cursor-pointer" />
@@ -88,15 +100,14 @@ export default function Navbar() {
                     {session.status == "authenticated" ? (
                       <>
                         <Link href={"/profile"}>
-                          <DropdownMenuItem>
-                            <span className="text-blue-500">Profile</span>
+                          <DropdownMenuItem className="cursor-pointer">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               strokeWidth={1.5}
                               stroke="currentColor"
-                              className="size-5 text-blue-500"
+                              className="size-6 text-blue-500"
                             >
                               <path
                                 strokeLinecap="round"
@@ -104,31 +115,168 @@ export default function Navbar() {
                                 d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
                               />
                             </svg>
+
+                            <span className="text-blue-500 font-semibold">
+                              Profile
+                            </span>
                           </DropdownMenuItem>
                         </Link>
-                        <Link href={"/logout"}>
-                          <DropdownMenuItem
-                            onClick={() => {
-                              signOut({ callbackUrl: "/" });
-                            }}
+
+                        <DropdownMenuItem
+                          className="cursor-pointer"
+                          onClick={() => {
+                            signOut({ callbackUrl: "/" });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="size-6 text-red-500"
                           >
-                            <span className="text-red-500">logout</span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={1.5}
-                              stroke="currentColor"
-                              className="size-6 text-red-500 "
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
-                              />
-                            </svg>
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+                            />
+                          </svg>
+
+                          <span className="text-red-500 font-semibold">
+                            LogOut
+                          </span>
+                        </DropdownMenuItem>
+                      </>
+                    ) : (
+                      <>
+                        <Link href={"/login"}>
+                          <DropdownMenuItem><span className="hover:text-blue-500 font-semibold cursor-pointer">Login</span></DropdownMenuItem>
+                        </Link>
+
+                        <Link href={"/register"}>
+                          <DropdownMenuItem><span className="hover:text-blue-500 font-semibold cursor-pointer">Register</span></DropdownMenuItem>
+                        </Link>
+                      </>
+                    )}
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* CART */}
+              {session.status == "authenticated" && (
+                <div className="relative">
+                  <Link href={"/cart"}>
+                    <ShoppingCartIcon className="text-blue-700 fill-blue-700" />
+                    <Badge className="absolute -top-5 -end-3 bg-blue-700 text-white">
+                      {isLoading ? (
+                        <Loader className="animate-spin" />
+                      ) : (
+                        cartData?.numOfCartItems
+                      )}
+                    </Badge>
+                  </Link>
+                </div>
+              )}
+
+              {/* WISHLIST */}
+              {session.status == "authenticated" && (
+                <div className="relative">
+                  <Link href={"/wishlist"}>
+                    <HeartIcon className="text-red-600 fill-red-600" />
+                    <Badge className="absolute -top-5 -end-3 bg-red-600 text-white">
+                      {wishlistLoading ? (
+                        <Loader className="animate-spin" size={14} />
+                      ) : (
+                        wishlistData?.products?.length ?? 0
+                      )}
+                    </Badge>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Dropdown */}
+            <div className="md:hidden">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <MenuIcon className="cursor-pointer" />
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Menu</DropdownMenuLabel>
+                  <DropdownMenuGroup>
+                    <Link href="/products">
+                      <DropdownMenuItem>Products</DropdownMenuItem>
+                    </Link>
+                    <Link href="/categories">
+                      <DropdownMenuItem>Categories</DropdownMenuItem>
+                    </Link>
+                    <Link href="/brands">
+                      <DropdownMenuItem>Brands</DropdownMenuItem>
+                    </Link>
+                  </DropdownMenuGroup>
+
+                  <DropdownMenuLabel>Account</DropdownMenuLabel>
+
+                  <DropdownMenuGroup>
+                    {session.status == "authenticated" ? (
+                      <>
+                        <Link href={"/profile"}>
+                          <DropdownMenuItem className="text-blue-600">
+                            <UserIcon className="mr-1 text-blue-600 " />
+                            Profile
                           </DropdownMenuItem>
                         </Link>
+                        <Link href="/cart">
+                          <DropdownMenuItem className="relative text-yellow-500">
+                            <ShoppingCartIcon className="text-yellow-500 fill-yellow-500" />
+                            Cart
+                            <Badge className="absolute -top-1 start-15  bg-yellow-500 text-black text-center px-1.5 py-0.5 text-xs">
+                              {isLoading ? (
+                                <Loader className="animate-spin" />
+                              ) : (
+                                cartData?.numOfCartItems
+                              )}
+                            </Badge>
+                          </DropdownMenuItem>
+                        </Link>
+
+                        <Link href="/wishlist">
+                          <DropdownMenuItem className="relative text-red-600">
+                            <HeartIcon className="text-red-600 fill-red-600 " />
+                            WishList
+                            <Badge className="absolute -top-1 start-22 text-white bg-red-600 text-center px-1.5 py-0.5 text-xs">
+                              {wishlistLoading ? (
+                                <Loader className="animate-spin" size={14} />
+                              ) : (
+                                wishlistData?.products?.length ?? 0
+                              )}
+                            </Badge>
+                          </DropdownMenuItem>
+                        </Link>
+
+                        <DropdownMenuItem
+                          onClick={() => {
+                            signOut({ callbackUrl: "/" });
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="size-6 text-red-500"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+                            />
+                          </svg>
+                          <span className="text-red-500">logout</span>
+                        </DropdownMenuItem>
                       </>
                     ) : (
                       <>
@@ -144,34 +292,6 @@ export default function Navbar() {
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
-              {session.status == "authenticated" && (
-                <div className="relative">
-                  <Link href={"/cart"}>
-                    <ShoppingCartIcon className="text-blue-700 fill-blue-700" />
-                    <Badge className="h-5 min-w-5 rounded-full px-1 text-white font-mono bg-blue-700 tabular-nums absolute -top-4 -end-3">
-                      {isLoading ? (
-                        <Loader className="animate-spin" />
-                      ) : (
-                        cartData?.numOfCartItems
-                      )}
-                    </Badge>
-                  </Link>
-                </div>
-              )}
-              {session.status == "authenticated" && (
-                <div className="relative ">
-                  <Link href={"/wishlist"}>
-                    <HeartIcon className="text-red-600 fill-red-600" />
-                    <Badge className="  h-5 min-w-5 rounded-full px-1 text-white bg-red-600 font-mono tabular-nums absolute -top-4 -end-3 ">
-                      {wishlistLoading ? (
-                        <Loader className="animate-spin" size={14} />
-                      ) : (
-                        wishlistData?.products?.length ?? 0
-                      )}
-                    </Badge>
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </div>

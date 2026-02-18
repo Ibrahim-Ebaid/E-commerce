@@ -3,18 +3,16 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t bg-white mt-25">
-      <div className="container mx-auto">
-        <div className="max-w-full   px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="container mx-auto w-full px-4 sm:px-6">
+        <div className="max-w-full px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center sm:text-left">
           {/* Brand */}
           <div>
-            <Link href={"/"}>
-              {" "}
-              <div className="flex items-center gap-2 mb-4 hover:text-blue-500">
-                {" "}
-                <div className="w-8 h-8 bg-black text-white flex items-center justify-center rounded font-semibold ">
+            <Link href={"/"} className="inline-block">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mb-4 hover:text-blue-500">
+                <div className="w-8 h-8 bg-black text-white flex items-center justify-center rounded font-semibold">
                   S
                 </div>
-                <h2 className="text-lg font-semibold ">ShopMart</h2>
+                <h2 className="text-lg font-semibold">ShopMart</h2>
               </div>
             </Link>
 

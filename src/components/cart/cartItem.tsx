@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Loader, Minus, Plus } from "lucide-react";
 import { useContext } from "react";
 import { cartContext } from "../context/cartContext";
+import Link from "next/link";
 type CartItemProps = {
   removeCartItem: (productId: string) => void;
   removingId: string | null;
@@ -25,27 +26,32 @@ export default function CartItem({
         {cartData?.data.products.map((item) => (
           <div
             key={item._id}
-            className="flex items-center justify-between border rounded-xl p-4"
+            className="flex flex-col md:flex-row items-center md:justify-between border rounded-xl p-4"
           >
             {/* left */}
-            <div className="flex gap-4">
-              <Image
-                src={item.product.imageCover}
-                width={120}
-                height={120}
-                alt={item.product.title}
-                className="rounded-lg"
-              />
-
-              <div>
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full md:w-auto">
+              <Link
+                href={"/products/" + item.product._id}
+                className="mx-auto md:mx-0"
+              >
+                <Image
+                  src={item.product.imageCover}
+                  width={120}
+                  height={120}
+                  alt={item.product.title}
+                  className="rounded-lg cursor-pointer"
+                />
+              </Link>
+              <div className="text-center md:text-left flex-1">
                 <p className="text-sm text-muted-foreground">
                   {item.product.brand.name}
                 </p>
                 <h3 className="font-semibold text-lg">{item.product.title}</h3>
                 <p>{item.product.category.name}</p>
 
-                <div className="flex items-center gap-2 mt-3">
-                  <Button className="hover:text-white hover:bg-red-500"
+                <div className="flex items-center justify-center md:justify-start gap-2 mt-3">
+                  <Button
+                    className="hover:text-white hover:bg-red-500"
                     onClick={() =>
                       updateCartItem(item.product._id, item.count - 1)
                     }
@@ -54,9 +60,15 @@ export default function CartItem({
                   >
                     <Minus size={16} />
                   </Button>
-                  <span className="font-semibold">{updateId==item.product.id?<Loader className="animate-spin text-yellow-400" />:item.count}</span>
+                  <span className="font-semibold">
+                    {updateId == item.product.id ? (
+                      <Loader className="animate-spin text-yellow-400" />
+                    ) : (
+                      item.count
+                    )}
+                  </span>
                   <Button
-                   className="hover:text-white hover:bg-blue-600"
+                    className="hover:text-white hover:bg-blue-600"
                     onClick={() =>
                       updateCartItem(item.product._id, item.count + 1)
                     }
@@ -70,16 +82,16 @@ export default function CartItem({
             </div>
 
             {/* right */}
-            <div className="text-right">
+            <div className="w-full mt-4 md:mt-0 md:w-auto text-center md:text-right">
               <p className="font-bold text-lg">{item.price} EGP</p>
-              <div className="flex justify-between items-center gap-2 ">
+              <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 mt-2">
                 {removingId == item.product._id && (
-                  <Loader className="animate-spin text-red-500"/>
+                  <Loader className="animate-spin text-red-500" />
                 )}
 
                 <Button
                   onClick={() => removeCartItem(item.product._id)}
-                   className="border-2 mt-2 rounded-xl p-3 w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                  className="border-2 rounded-xl p-3 w-full md:w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
                 >
                   Remove
                 </Button>

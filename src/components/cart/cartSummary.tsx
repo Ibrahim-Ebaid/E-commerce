@@ -14,42 +14,44 @@ export default function CartSummary({ clearCart, isClearing }: clearCartProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-3 ">
-        <div className="border rounded-xl p-6 h-fit  ">
-          <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+      <div className="flex flex-col gap-3 w-full md:w-96">
+        <div className="border rounded-xl p-6 h-fit w-full">
+          <h2 className="text-xl font-bold mb-4 text-center md:text-left">
+            Order Summary
+          </h2>
 
-          <div className="flex justify-between mb-2 ">
+          <div className="flex flex-col sm:flex-row justify-between mb-2">
             <span>Subtotal : {cartData?.numOfCartItems} items</span>
-            <span className="font-semibold">
+            <span className="font-semibold mt-1 sm:mt-0">
               {cartData?.data.totalCartPrice} EGP
             </span>
           </div>
 
-          <div className="flex justify-between mb-4 ">
+          <div className="flex flex-col sm:flex-row justify-between mb-4">
             <span>Shipping</span>
-            <span className="text-green-600">Free</span>
+            <span className="text-green-600 mt-1 sm:mt-0">Free</span>
           </div>
 
           <hr className="mb-4" />
 
-          <div className="flex justify-between text-lg font-bold mb-6">
+          <div className="flex flex-col sm:flex-row justify-between text-lg font-bold mb-6">
             <span>Total</span>
             <span>{cartData?.data.totalCartPrice} EGP</span>
           </div>
 
-          <CheckOut cartId={cartData?.cartId!}/>
+          <CheckOut cartId={cartData?.cartId!} />
+
           <Link href={"/products"}>
-            {" "}
-            <Button variant="outline" className="w-full mb-4">
+            <Button variant="outline" className="w-full mb-4 mt-4">
               Continue Shopping
             </Button>
           </Link>
         </div>
-        <div className="border-2 rounded-xl p-3 w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white">
-          {" "}
+
+        <div className="border-2 rounded-xl p-3 w-full md:w-fit font-semibold bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white">
           <button
             onClick={clearCart}
-            className="flex items-center gap-2  text-sm  cursor-pointer"
+            className="flex items-center justify-center gap-2 text-sm cursor-pointer w-full"
           >
             {isClearing ? (
               <Loader className="animate-spin" />

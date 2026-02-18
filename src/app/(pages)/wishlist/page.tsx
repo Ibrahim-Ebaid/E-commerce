@@ -105,12 +105,13 @@ export default function Wishlist() {
   }
 
   return (
-    <section className="container mx-auto py-10">
+    <section className="container mx-auto py-10 ">
+      <div className="flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold mb-2">My Wishlist</h1>
       <p className="text-muted-foreground mb-8">
-        {products.length} items in your wishlist
+        <span className="font-bold text-blue-600">{products.length} </span>items in your wishlist
       </p>
-
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* LEFT */}
         <div className="lg:col-span-2 space-y-4">

@@ -39,11 +39,13 @@ export default async function Products() {
                     height={300}
                     alt=""
                   />
+                </CardHeader>
+
+                <CardContent className="mt-4 flex flex-col items-center md:items-start w-full">
                   <CardDescription>{product.brand.name}</CardDescription>
                   <CardTitle>{product.title.split(" ", 2).join(" ")}</CardTitle>
                   <CardDescription>{product.category.name}</CardDescription>
-                </CardHeader>
-                <CardContent>
+
                   <div className="flex">
                     <MyStarIcon />
                     <MyStarIcon />
